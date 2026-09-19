@@ -1,7 +1,5 @@
 /* ============================================================
-   Portfolio josemri — hoja de estilos alternativa
-   Tema MSN / Web Y2K: azul messenger, brillos, bevels,
-   burbujas, marquesinas y todo el encanto de 2004.
+   Portfolio josemri — hoja de estilos MSN Messenger
    ============================================================ */
 
 /* ---------- Variables ---------- */
@@ -9,23 +7,27 @@
 	--msn-blue: #1b8ce5;
 	--msn-blue-deep: #0b5cad;
 	--msn-blue-dark: #0a4f9c;
+	--msn-navy: #2b4a6b;
 	--msn-sky: #eaf5ff;
 	--msn-cloud: #dff0ff;
 	--msn-paper: #ffffff;
 	--msn-link: #0064c1;
 	--msn-gold: #ffd500;
 	--msn-warn: #fff6c9;
+	--msn-online: #6ecf5e;
+	--msn-away: #f7ce4a;
 	--msn-border: #bcdcf4;
 	--msn-border-deep: #7fb3dd;
 	--max-w: 46rem;
 
 	--font-msn: Tahoma, Verdana, Geneva, "DejaVu Sans", sans-serif;
 	--font-title: "Trebuchet MS", Tahoma, sans-serif;
-	--font-cute: "Comic Sans MS", "Trebuchet MS", cursive;
+	--font-cute: "Viner Hand ITC", "Comic Sans MS", "Trebuchet MS", cursive;
 
 	--pad-top: 96px;
 	--pad-x: 24px;
 	--header-h: 58px;
+	--statusbar-h: 24px;
 	--ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -50,10 +52,49 @@ body {
 	font-size: 15px;
 	line-height: 1.6;
 	color: #1c2b3a;
-	background-color: #eef6ff;
-	/* Puntitos estilo fondo de web 1.0 */
-	background-image: radial-gradient(circle, rgba(120, 180, 230, 0.28) 1px, transparent 1px);
-	background-size: 34px 34px;
+	background-color: #d9e9f8;
+	/* Papel de escritorio MSN: cielo con puntitos y viñeta */
+	background-image:
+		radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.9) 0 3px, rgba(160, 205, 240, 0.5) 3px 4px, transparent 4px),
+		radial-gradient(rgba(90, 160, 220, 0.22) 1px, transparent 1px);
+	background-size: 140px 140px, 34px 34px;
+	background-position: 0 0, 0 0;
+}
+
+/* Marca de agua: la butterfly del messenger */
+body::before {
+	content: "🦋";
+	position: fixed;
+	top: 68px;
+	right: 4%;
+	font-size: clamp(90px, 16vw, 180px);
+	line-height: 1;
+	opacity: 0.07;
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* Barra de estado inferior */
+body::after {
+	content: "● En línea   ·   josemri@live.com   ·   ♫ ";
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 60;
+	height: var(--statusbar-h);
+	display: flex;
+	align-items: center;
+	padding: 0 14px;
+	font-size: 11px;
+	color: #cfe6ff;
+	background: linear-gradient(180deg, #3d6c9a, #1f3c59);
+	border-top: 1px solid #5d87ae;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+	pointer-events: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* ---------- Selección ---------- */
@@ -93,6 +134,7 @@ a {
 
 a:hover {
 	color: #ff6f00;
+	text-decoration-thickness: 2px;
 }
 
 a:active {
@@ -105,7 +147,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 summary:focus-visible {
-	outline: 2px solid var(--msn-blue-deep);
+	outline: 2px solid #ff66cc;
 	outline-offset: 2px;
 }
 
@@ -113,10 +155,10 @@ summary:focus-visible {
 main {
 	max-width: var(--max-w);
 	margin-inline: auto;
-	padding: var(--pad-top) var(--pad-x) 96px;
+	padding: var(--pad-top) var(--pad-x) calc(96px + var(--statusbar-h) + 24px);
 }
 
-/* ---------- Barra de navegación - barra de titulo MSN ---------- */
+/* ---------- Barra de título MSN ---------- */
 main > header {
 	position: sticky;
 	top: 0;
@@ -128,92 +170,117 @@ main > header {
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
-	/* Gradiente "título" + brillo superior */
+	/* Chrome MSN: doble brillo + gradiente azul */
 	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 45%),
-		linear-gradient(180deg, #2a90e2, #0f5fb3);
-	border-bottom: 3px solid #085aa7;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 2px 8px rgba(10, 80, 160, 0.35);
+		linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.12) 18%, rgba(255, 255, 255, 0) 40%),
+		linear-gradient(180deg, #3da7f0, #1a7adf 55%, #0f5fb3);
+	border-bottom: 3px solid #074c93;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 3px 10px rgba(10, 60, 130, 0.4);
 }
 
-/* Estado "conectado" de messenger */
+/* Estado "conectado" en verde messenger */
 main > header::before {
-	content: "● josemri está en línea";
+	content: "🦋 ● josemri está en línea";
 	font-family: var(--font-title);
 	font-size: 0.8rem;
 	font-weight: bold;
-	color: #d6f0ff;
-	text-shadow: 0 1px 0 rgba(0, 40, 100, 0.6);
+	color: #bff0b2;
+	text-shadow: 0 0 8px rgba(110, 207, 94, 0.8), 0 1px 0 rgba(0, 40, 100, 0.5);
 	white-space: nowrap;
 	animation: statusPulse 2.4s ease-in-out infinite;
 }
 
 main > header nav {
 	display: flex;
-	gap: 6px;
+	gap: 4px;
 }
 
+/* Menús del messenger */
 main > header nav a {
 	font-family: var(--font-title);
-	font-size: 0.8rem;
+	font-size: 0.78rem;
 	font-weight: bold;
 	color: #ffffff;
 	text-decoration: none;
 	text-shadow: 0 1px 0 rgba(0, 40, 100, 0.55);
-	padding: 8px 14px;
-	border-radius: 5px;
-	transition: background 0.2s var(--ease), color 0.2s var(--ease);
+	padding: 7px 13px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	transition: background 0.15s var(--ease), color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
 main > header nav a:hover {
-	color: #083d7a;
-	background: linear-gradient(180deg, #ffffff, #c8e6ff);
-	box-shadow: inset 0 1px 0 #ffffff;
+	color: #0a4f9c;
+	background: linear-gradient(180deg, #ffffff, #d7ecff);
+	border-color: #9ecbf2;
+	box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(10, 60, 130, 0.3);
 	text-shadow: none;
+}
+
+main > header nav a:first-child {
+	font-family: var(--font-cute);
+	font-size: 0.95rem;
 }
 
 /* ---------- Identidad ---------- */
 h1 {
+	position: relative;
+	overflow: hidden;
 	margin: 34px 0 16px;
 	font-family: var(--font-title);
 	font-weight: bold;
 	font-size: clamp(1.9rem, 4.6vw, 2.7rem);
 	letter-spacing: -0.01em;
 	color: var(--msn-blue-deep);
-	text-shadow: 1px 2px 0 rgba(255, 255, 255, 0.95), 0 0 18px rgba(27, 140, 229, 0.35);
+	text-shadow: 1px 2px 0 rgba(255, 255, 255, 0.95), 0 0 18px rgba(27, 140, 229, 0.4);
 }
 
 h1::before {
-	content: "✦ ";
+	content: "🦋 ✦ ";
 	color: var(--msn-gold);
 	text-shadow: 0 0 8px rgba(255, 213, 0, 0.8);
 	animation: twinkle 1.4s steps(2, start) infinite;
 }
 
+/* Barrido de brillo sobre el nombre */
 h1::after {
-	content: " ✦";
-	color: var(--msn-gold);
-	text-shadow: 0 0 8px rgba(255, 213, 0, 0.8);
-	animation: twinkle 1.4s steps(2, start) infinite reverse;
+	content: "";
+	position: absolute;
+	top: -10%;
+	left: -80%;
+	width: 45%;
+	height: 200%;
+	background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+	transform: skewX(-18deg);
+	animation: shineSweep 6s ease-in-out infinite;
+	pointer-events: none;
 }
 
-/* Marquee tipo estado de msn */
+/* Ticker tipo estado de msn (solo pantallas anchas; en móvil texto estático que hace wrap) */
 main > p {
-	display: block;
-	max-width: none;
-	white-space: nowrap;
-	overflow: hidden;
 	margin: 0 0 6px;
 	font-family: var(--font-title);
 	font-size: 1.02rem;
 	font-weight: bold;
 	color: #0e5faf;
-	animation: marquee 10s linear infinite;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-main > p::before {
-	content: "» ";
+main > p::after {
+	content: " ♪";
 	color: #ff8f00;
+}
+
+@media (min-width: 761px) {
+	main > p {
+		display: block;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		padding-right: 6px;
+		border-bottom: 1px dashed #b9d8f4;
+		animation: marquee 10s linear infinite;
+	}
 }
 
 strong {
@@ -221,41 +288,41 @@ strong {
 	color: var(--msn-blue-deep);
 }
 
-/* ---------- Secciones ---------- */
+/* ---------- Secciones → grupos de contactos ---------- */
 h2 {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	margin: 52px 0 20px;
-	padding: 7px 16px;
+	padding: 6px 14px;
 	font-family: var(--font-title);
 	font-weight: bold;
-	font-size: 1.08rem;
-	letter-spacing: 0.01em;
-	color: #ffffff;
-	background: linear-gradient(180deg, #2a90e2, #1266bd);
-	border: 1px solid #0a5fb4;
-	border-radius: 9px;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 6px rgba(10, 80, 160, 0.28);
-	text-shadow: 0 1px 0 rgba(0, 40, 100, 0.5);
+	font-size: 1rem;
+	letter-spacing: 0.02em;
+	color: #eaf4ff;
+	background: linear-gradient(180deg, #4d7096, #2f5276 60%, #274a6c);
+	border: 1px solid #1d3d5c;
+	border-radius: 5px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 2px 5px rgba(10, 40, 80, 0.35);
+	text-shadow: 0 1px 0 rgba(0, 20, 50, 0.6);
 }
 
 h2::before {
-	content: "★";
-	font-size: 0.92em;
-	color: #ffe08a;
-	text-shadow: 0 0 6px rgba(255, 224, 138, 0.9);
+	content: "▾";
+	font-size: 0.9em;
+	color: #bcdcf4;
 }
 
-/* Mini botones de ventana (— ✕) */
+/* Cristal de la ventana (minimizar) */
 h2::after {
 	content: "—";
 	margin-left: auto;
-	padding: 0 7px;
-	font-size: 0.85em;
-	color: #d6f0ff;
-	border: 1px solid rgba(255, 255, 255, 0.45);
-	border-radius: 4px;
+	padding: 0 8px;
+	font-size: 0.8em;
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.12);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -273,28 +340,67 @@ h4 {
 	color: #123f6b;
 }
 
-/* ---------- Experiencia ---------- */
+/* ---------- Experiencia → filas de contactos ---------- */
 ul {
 	list-style: none;
+	background: var(--msn-paper);
+	border: 1px solid var(--msn-border);
+	border-radius: 6px;
+	padding: 6px;
 }
 
 ul li {
 	position: relative;
-	padding: 6px 0 6px 26px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 44px 8px 48px;
+	margin: 1px 0;
 	color: #2c4258;
+	font-weight: bold;
+	border-radius: 4px;
+	cursor: default;
+	transition: background 0.15s var(--ease);
 }
 
+/* Avatar del contacto */
 ul li::before {
-	content: "●";
+	content: "👤";
 	position: absolute;
-	left: 2px;
-	font-size: 0.8em;
-	color: var(--msn-blue);
-	text-shadow: 0 0 6px rgba(27, 140, 229, 0.7);
-	animation: statusPulse 3s ease-in-out infinite;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	font-size: 13px;
+	background: linear-gradient(180deg, #a8d4f7, #6aa8e0);
+	border: 1px solid #4d89c8;
+	border-radius: 50%;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 1px 2px rgba(10, 60, 130, 0.3);
 }
 
-/* ---------- Fotografía - polaroid ---------- */
+/* Punto de estado */
+ul li::after {
+	content: "";
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--msn-online);
+	box-shadow: 0 0 6px rgba(110, 207, 94, 0.9);
+	animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+ul li:hover {
+	background: linear-gradient(180deg, #e6f4ff, #c9e6ff);
+}
+
+/* ---------- Fotografía - polaroid con nudge ---------- */
 a[download] {
 	position: relative;
 	display: inline-block;
@@ -303,20 +409,20 @@ a[download] {
 	background: var(--msn-paper);
 	border: 1px solid var(--msn-border-deep);
 	border-radius: 6px;
-	box-shadow: 4px 4px 0 rgba(10, 80, 160, 0.18);
+	box-shadow: 4px 4px 0 rgba(10, 80, 160, 0.18), inset 0 1px 0 #ffffff;
 	transform: rotate(-2deg);
 	transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 a[download]::after {
-	content: "jag.png";
+	content: "jag.png 📎";
 	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 8px;
 	text-align: center;
 	font-family: var(--font-cute);
-	font-size: 0.8rem;
+	font-size: 0.82rem;
 	color: var(--msn-blue-deep);
 }
 
@@ -332,16 +438,30 @@ a[download] img {
 a[download]:hover {
 	transform: rotate(0deg) translateY(-3px);
 	box-shadow: 6px 6px 0 rgba(10, 80, 160, 0.22);
+	animation: nudge 0.5s ease-in-out 2;
 }
 
-/* ---------- Tecnologías favoritas ---------- */
+/* ---------- Tecnologías favoritas → panel de contacto ---------- */
 aside {
 	margin: 30px 0 12px;
 	padding: 18px 20px;
 	background: linear-gradient(180deg, #ffffff, var(--msn-sky));
 	border: 1px solid var(--msn-border);
 	border-radius: 12px;
-	box-shadow: inset 0 1px 0 #ffffff, 0 2px 6px rgba(10, 80, 160, 0.12);
+	box-shadow: inset 0 1px 0 #ffffff, 0 2px 6px rgba(10, 80, 160, 0.14);
+	position: relative;
+}
+
+aside::after {
+	content: "información personal";
+	position: absolute;
+	right: 14px;
+	top: 10px;
+	font-size: 10px;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	color: #9bc3e6;
+	text-transform: uppercase;
 }
 
 aside header {
@@ -353,7 +473,7 @@ aside h3 {
 }
 
 aside h3::before {
-	content: "☏ ";
+	content: "💬 ";
 	color: var(--msn-blue);
 }
 
@@ -365,6 +485,7 @@ ol {
 }
 
 ol li {
+	position: relative;
 	padding: 5px 14px;
 	font-family: var(--font-title);
 	font-weight: bold;
@@ -375,38 +496,72 @@ ol li {
 	box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(10, 80, 160, 0.22);
 }
 
-/* Burbujas de tonos messenger */
+/* Burbujas de tonos messenger + estado */
 ol li:nth-child(1) { background: linear-gradient(180deg, #d5f0ff, #a5d8fb); }
 ol li:nth-child(2) { background: linear-gradient(180deg, #ffe9c2, #ffd48a); }
 ol li:nth-child(3) { background: linear-gradient(180deg, #e3d6ff, #c4aefb); }
 ol li:nth-child(4) { background: linear-gradient(180deg, #d6fbef, #a8efd2); }
 ol li:nth-child(5) { background: linear-gradient(180deg, #ffe2ec, #ffbcd4); }
 
-ol li:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 4px 8px rgba(10, 80, 160, 0.25);
+ol li::after {
+	content: "";
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--msn-online);
+	border: 1px solid #ffffff;
 }
 
-/* ---------- Proyectos - tarjetas tipo ventana ---------- */
+ol li:hover {
+	transform: translateY(-2px) rotate(-1deg);
+	box-shadow: 0 4px 8px rgba(10, 80, 160, 0.25), inset 0 1px 0 #ffffff;
+}
+
+/* ---------- Proyectos → ventanas de conversación scatter ---------- */
 section:has(article) {
-	margin: 16px 0;
-	padding: 0 0 4px;
-	background: var(--msn-paper);
-	border: 1px solid #c9def2;
-	border-top: 3px solid #2a90e2;
-	border-radius: 10px;
-	box-shadow: 0 2px 7px rgba(10, 80, 160, 0.16);
-	overflow: hidden;
-	transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+	margin: 14px 0;
+	padding: 0 0 12px;
+	background: linear-gradient(180deg, #ffffff, #f3faff);
+	border: 1px solid #c5dcf1;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(10, 80, 160, 0.16), 1px 1px 0 #ffffff inset;
+	overflow: visible;
+	position: relative;
+	transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+/* Cabecera de conversación */
+section:has(article)::before {
+	content: "♫ conversación";
+	display: block;
+	padding: 5px 14px;
+	font-size: 0.72rem;
+	font-weight: bold;
+	color: #eaf4ff;
+	background: linear-gradient(180deg, #4d7096, #2f5276);
+	border-bottom: 1px solid #1d3d5c;
+	text-shadow: 0 1px 0 rgba(0, 20, 50, 0.5);
+	border-radius: 7px 7px 0 0;
+	letter-spacing: 0.04em;
+}
+
+section:has(article):nth-of-type(even) {
+	transform: rotate(0.8deg);
+}
+section:has(article):nth-of-type(odd) {
+	transform: rotate(-0.8deg);
 }
 
 section:has(article):hover {
-	transform: translateY(-3px);
-	box-shadow: 0 8px 18px rgba(10, 80, 160, 0.22);
+	transform: rotate(0deg) translateY(-3px);
+	box-shadow: 0 10px 22px rgba(10, 80, 160, 0.28);
 }
 
 article {
-	padding: 18px 20px;
+	padding: 16px 20px 4px;
 }
 
 article header {
@@ -416,6 +571,7 @@ article header {
 article h4::before {
 	content: "▸ ";
 	color: #ff9e2e;
+	font-size: 0.9em;
 }
 
 article h4 a {
@@ -429,12 +585,12 @@ article h4 a:hover {
 
 article p {
 	max-width: 40rem;
-	font-size: 0.94rem;
+	font-size: 0.93rem;
 	color: #2c4258;
 }
 
 article footer {
-	margin-top: 14px;
+	margin-top: 12px;
 }
 
 article footer small {
@@ -464,7 +620,8 @@ fieldset {
 	border-radius: 8px;
 	padding: 22px 20px 10px;
 	margin-bottom: 16px;
-	background: rgba(255, 255, 255, 0.65);
+	background: rgba(255, 255, 255, 0.78);
+	box-shadow: inset 0 1px 0 #ffffff;
 }
 
 legend {
@@ -495,24 +652,29 @@ select {
 	font-size: 0.95rem;
 	color: #12283d;
 	background: #ffffff;
-	border: 1px solid var(--msn-border-deep);
-	border-top-color: #5f8fbc;
+	border: 1px solid #7fb3dd;
+	border-top-color: #4879ad;
 	border-left-color: #5f8fbc;
 	border-radius: 6px;
-	transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+	box-shadow: inset 0 2px 3px rgba(20, 70, 130, 0.12);
+	transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
 input::placeholder {
-	color: #8fb6d8;
+	color: #9bc3e6;
+	font-style: italic;
+}
+
+input:not([type="checkbox"]):hover,
+select:hover {
+	border-color: var(--msn-blue);
 }
 
 input:not([type="checkbox"]):focus,
 select:focus {
 	outline: none;
-	border-color: var(--msn-blue);
-	border-top-color: var(--msn-blue);
-	border-left-color: var(--msn-blue);
-	box-shadow: 0 0 0 3px rgba(27, 140, 229, 0.22);
+	border-color: #1b8ce5;
+	box-shadow: 0 0 0 3px rgba(27, 140, 229, 0.25), inset 0 2px 3px rgba(20, 70, 130, 0.1);
 }
 
 select {
@@ -554,13 +716,13 @@ input[type="checkbox"] {
 	cursor: pointer;
 }
 
-/* ---------- Preguntas frecuentes - notas adhesivas ---------- */
+/* ---------- Preguntas frecuentes → post-its y burbujas de chat ---------- */
 section:has(details) {
 	padding: 4px 0;
 }
 
 details {
-	margin-bottom: 12px;
+	margin-bottom: 14px;
 }
 
 summary {
@@ -579,8 +741,8 @@ summary {
 	list-style: none;
 	cursor: pointer;
 	user-select: none;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 3px rgba(150, 110, 0, 0.18);
-	transition: background 0.2s var(--ease);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 2px 2px 0 rgba(150, 110, 0, 0.15);
+	transition: background 0.15s var(--ease), transform 0.15s var(--ease);
 }
 
 summary::-webkit-details-marker {
@@ -602,24 +764,52 @@ summary::after {
 
 details[open] summary {
 	background: linear-gradient(180deg, #fffbe6, #ffe48a);
+	transform: rotate(-0.5deg);
 }
 
 details[open] summary::after {
 	transform: rotate(45deg);
 }
 
-details p {
-	padding: 12px 16px;
-	margin-top: 10px;
+details[open] {
+	animation: nudge 0.4s ease-in-out;
+}
+
+/* Burbuja de chat con su "cola" */
+details > p {
+	position: relative;
+	padding: 12px 16px 12px 18px;
+	margin: 12px 0 0 14px;
 	font-size: 0.92rem;
 	color: #0e5faf;
-	background: var(--msn-cloud);
-	border: 1px dashed #9ec9ec;
-	border-radius: 8px;
+	background: linear-gradient(180deg, #ffffff, var(--msn-cloud));
+	border: 1px solid #9ec9ec;
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(10, 80, 160, 0.14);
+}
+
+details > p::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	left: 18px;
+	border: 8px solid transparent;
+	border-top: 8px solid #9ec9ec;
+}
+
+details > p::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 19px;
+	border: 7px solid transparent;
+	border-top: 7px solid #ffffff;
 }
 
 /* ---------- Botones - botones pompita MSN ---------- */
 button {
+	position: relative;
+	overflow: hidden;
 	padding: 9px 18px;
 	font-family: var(--font-title);
 	font-weight: bold;
@@ -632,14 +822,32 @@ button {
 	border-bottom-color: #5f8fbc;
 	border-right-color: #5f8fbc;
 	border-radius: 9px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 #ffffff;
 	cursor: pointer;
 	transition: background 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
+/* Brillo tipo vidrio aero */
+button::after {
+	content: "";
+	position: absolute;
+	top: -60%;
+	left: -20%;
+	width: 60%;
+	height: 220%;
+	background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+	transform: skewX(-20deg);
+	transition: left 0.5s var(--ease);
+	pointer-events: none;
+}
+
 button:hover {
-	background: linear-gradient(180deg, #ffffff, #e4f2ff 55%, #b8dcfb);
-	box-shadow: 0 3px 6px rgba(10, 80, 160, 0.2);
+	background: linear-gradient(180deg, #ffffff, #e8f4ff 50%, #b8dcfb);
+	box-shadow: 0 3px 8px rgba(10, 80, 160, 0.28), inset 0 1px 0 #ffffff;
+}
+
+button:hover::after {
+	left: 130%;
 }
 
 button:active {
@@ -650,29 +858,62 @@ button:active {
 	transform: translateY(1px);
 }
 
+/* Botón de "iniciar sesión" del estilo MSN */
 form button[type="submit"] {
-	margin-top: 4px;
+	margin-top: 6px;
 	justify-self: start;
+	padding: 11px 30px;
+	font-size: 0.85rem;
+	color: #ffffff;
+	background: linear-gradient(180deg, #58b6f7, #2196f3 48%, #0a7de0);
+	border: 1px solid #0a68c0;
+	border-top-color: #8fd0ff;
+	border-left-color: #4a9fe0;
+	border-radius: 14px;
+	box-shadow: 0 3px 8px rgba(10, 60, 130, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	text-shadow: 0 1px 0 rgba(0, 40, 100, 0.5);
+}
+
+form button[type="submit"]:hover {
+	background: linear-gradient(180deg, #6cc4ff, #3aa8ff 48%, #1490f0);
+}
+
+form button[type="submit"]:active {
+	border-top-color: #0a68c0;
+	border-left-color: #4a9fe0;
 }
 
 /* ---------- Diálogo - aviso de messenger ---------- */
 dialog {
-	width: min(440px, calc(100% - 40px));
+	position: relative;
+	width: min(460px, calc(100% - 40px));
 	margin: auto;
 	padding: 30px;
 	color: #12283d;
 	background: linear-gradient(180deg, #ffffff, var(--msn-sky));
 	border: 2px solid var(--msn-blue-deep);
 	border-radius: 12px;
-	box-shadow: 0 12px 34px rgba(10, 40, 90, 0.4);
+	box-shadow: 0 12px 34px rgba(10, 40, 90, 0.45), inset 0 1px 0 #ffffff;
 }
 
 dialog::backdrop {
-	background: rgba(8, 55, 110, 0.4);
+	background: rgba(8, 55, 110, 0.5);
+	backdrop-filter: blur(1px);
+}
+
+/* Icono de aviso */
+dialog::before {
+	content: "❕";
+	position: absolute;
+	top: 22px;
+	left: 24px;
+	font-size: 2.4rem;
+	line-height: 1;
+	filter: drop-shadow(0 0 6px rgba(255, 179, 0, 0.6));
 }
 
 dialog h1 {
-	margin: 0 0 10px;
+	margin: 0 0 10px 56px;
 	font-family: var(--font-title);
 	font-weight: bold;
 	font-size: 1.2rem;
@@ -687,6 +928,7 @@ dialog h1::after {
 }
 
 dialog p {
+	margin-left: 56px;
 	color: #2c4258;
 	font-size: 0.92rem;
 }
@@ -696,7 +938,6 @@ dialog button {
 	width: 100%;
 	font-size: 0.85rem;
 	padding: 11px 18px;
-	background: linear-gradient(180deg, #ffffff, #ffffff 42%, #cfe9ff);
 }
 
 main > button[id="show"] {
@@ -717,6 +958,19 @@ main > button[id="show"] {
 @keyframes statusPulse {
 	0%, 100% { opacity: 1; }
 	50% { opacity: 0.55; }
+}
+
+@keyframes shineSweep {
+	0%, 40% { left: -80%; }
+	55%, 100% { left: 140%; }
+}
+
+@keyframes nudge {
+	0%, 100% { transform: translateX(0); }
+	20% { transform: translateX(-6px); }
+	40% { transform: translateX(5px); }
+	60% { transform: translateX(-3px); }
+	80% { transform: translateX(2px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -742,28 +996,36 @@ main > button[id="show"] {
 		--pad-x: 18px;
 	}
 
+	body::after {
+		display: none;
+	}
+
 	h1 {
 		margin-top: 28px;
 	}
 
 	main > header::before {
-		display: none;
-	}
-
-	main > header {
-		justify-content: flex-end;
+		font-size: 0.7rem;
 	}
 
 	main > header nav a {
-		padding: 7px 9px;
-		font-size: 0.72rem;
+		padding: 6px 8px;
+		font-size: 0.7rem;
+	}
+
+	main > header nav a:first-child {
+		display: none;
 	}
 
 	article {
-		padding: 15px 16px;
+		padding: 14px 14px 4px;
 	}
 
 	a[download] img {
 		width: 100%;
+	}
+
+	ul li {
+		padding-right: 34px;
 	}
 }
