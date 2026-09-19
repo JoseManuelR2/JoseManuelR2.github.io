@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--metadata--->
+<head>
+	<meta charset="utf-8"> <!--condificacion a usar--->
+	<meta name="viewport" content="width=device-width"> <!--que el doc ocupee todo el ancho disponible--->
+	<meta name="theme-color" content="#09f"> <!--define color--->
+	<title>Portfolio JAG</title><!--titulo a la pagina--->
+	<link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-plain.svg"><!--icono de la pagin--->
+	<meta name="robots" content="index, follow"> <!--info para seo--->
+	<meta name="description" content="Portfolio de josemri — Estudiante de Ingeniería Informática y desarrollador de software libre."> <!--info para seo--->
+	<link rel="alternate" href="url" hreflang="es-ES"> <!--pagina destino para otro idioma--->
+	<link rel="canonical" href="url"> <!--define lagina p original--->
+</head>
+
+<body>
+	<!--contenido--->
+	<main>
+		<link rel="stylesheet" href="styles.css">
+
+		<header>
+			<nav> <!-- elemeento designado para navegar por la web --->
+				<a href="#experiencia">Experiencia</a> <!-- Anchor a otra web---> 
+				<a href="#proyectos">Proyectos</a>
+				<a href="https://github.com/josemri" target="_blank" rel="noreferrer">GitHub</a>
+				<!-- para el href mientras lo soporte el navegador se puede usar lo que queramos, ej: mailto:xxx@xxx.com, tel:+34111111111, whatsapp://send?text=hola --->
+			</nav>
+		</header>
+
+		<h1>Portfolio de José Manuel</h1>
+		<p><strong>Estudiante de Ingeniería Informática</strong> UCLM </p>
+		<a download href="jag.png">
+			<img title="foto de JAG" src="jag.png" alt="fotografia mia para curriculum camiseta blanca" width="100">
+		</a>
+		<h2 id="experiencia">Experiencia</h2>
+		<ul> <!-- unordered list --->
+			<li class="">ESII — Albacete</li>
+		</ul>
+
+		<aside>
+			<header> 
+				<h3>Mis tecnologías favoritas</h3>
+			</header>
+			<ol> <!-- ordered list--->
+				<li>Kotlin</li>
+				<li>Rust</li>
+				<li>C</li>
+				<li>Python</li>
+				<li>Shell</li>
+			</ol>
+		</aside>
+
+		<h2 id="proyectos">Proyectos realizados</h2>
+		<section>
+			<article>
+				<header>
+					<h4><a href="https://github.com/josemri/plyr" target="_blank" rel="noreferrer">plyr</a></h4>
+				</header>
+				<p>Reproductor de música minimalista para Android con estética de terminal. Reproduce desde YouTube y Spotify e incorpora controles por gestos para acciones rápidas.</p>
+				<footer>
+					<small>Kotlin · Jetpack Compose · YouTube / Spotify</small>
+				</footer>
+			</article>
+		</section>
+		<section>
+			<article>
+				<header>
+					<h4><a href="https://github.com/josemri/dots" target="_blank" rel="noreferrer">dots</a></h4>
+				</header>
+				<p>Configuración personalizada de i3 optimizada para un Asus Zenbook Duo: doble pantalla, lápiz, teclas de acción, rofi, dunst, kitty y nvim, con scripts de instalación incluidos.</p>
+				<footer>
+					<small>Shell · i3 · rofi · nvim</small>
+				</footer>
+			</article>
+		</section>
+		<section>
+			<article>
+				<header>
+					<h4><a href="https://github.com/josemri/game" target="_blank" rel="noreferrer">game — «Протокол Белене»</a></h4>
+				</header>
+				<p>Prototipo de videojuego desarrollado con Godot Engine: escenas, animaciones y scripts propios como base de un proyecto narrativo.</p>
+				<footer>
+					<small>GDScript · Godot Engine</small>
+				</footer>
+			</article>
+		</section>
+		<section>
+			<article>
+				<header>
+					<h4><a href="https://github.com/josemri/lab" target="_blank" rel="noreferrer">lab</a></h4>
+				</header>
+				<p>Colección de experimentos y prototipos con distintas tecnologías: shooter VR para Google Cardboard, juegos y simuladores de terminal, navegador de películas TUI y scripts para CC:Tweaked.</p>
+				<footer>
+					<small>C · Rust · Python · Lua · C#</small>
+				</footer>
+			</article>
+		</section>
+		<!-- Comentario --->
+		<section>
+			<h2>Formulario de contacto</h2>
+			<form method="post" action="/">
+				<fieldset>
+					<legend>Información personal</legend>
+					<label for="name">Nombre:</label>
+					<input type="text" id="name" placeholder="JAG">
+
+					<label for="em">Email:</label>
+					<input type="email" id="em" placeholder="a@a.es" required>
+
+					<label for="tel">Teléfono:</label>
+					<input type="tel" id="tel" placeholder="+34111111111">
+				</fieldset>
+				<fieldset>
+					<legend>Otros</legend>
+					<div>
+						<label for="why">¿Sobre qué quieres contactar?:</label>
+						<select name="why" id="why">
+							<option value="1">Trabajo</option>
+							<option value="2">Consulta</option>
+							<option value="3">Otros</option>
+						</select>
+					</div>
+					<div>
+						<label for="terms">Acepta los términos</label>
+						<input type="checkbox" id="terms" name="terms" required>
+					</div>
+					<div>
+						<datalist id="lang">
+							<option value="JavaScript"></option>
+							<option value="Python"></option>
+							<option value="C++"></option>
+						</datalist>
+						<label>Que lenguaje necesitas ayuda?</label>
+						<input list="lang" name="lang">
+					</div>
+				</fieldset>
+				<button type="submit">Enviar contacto</button>
+			</form>
+		</section>
+		<section>
+			<h2>Preguntas frecuentes</h2>
+			<details>
+				<summary>¿Cómo contacto?</summary>
+				<p>Enviando un correo a josemanuel.ramos2@alu.uclm.es</p>
+			</details>
+			<details>
+				<summary>¿Cómo me llamo?</summary>
+				<p>JAG</p>
+			</details>
+		</section>
+		<!-- <iframe width="600" height="400" src="https://www.youtube.com/embed/F-3e8exnVJY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --->
+		<!-- <video src="https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4"></video> --->
+		<dialog id="modal">
+			<h1>Se puede abrir un modal</h1>
+			<p>Es totalmente nativo</p>
+			<button id="cerrar">Cerrar</button>
+		</dialog>
+		<button id="show">Ver más información</button>
+		<script>
+			window.show.addEventListener('click',()=>{
+				window.modal.showModal()
+			});
+			window.cerrar.addEventListener('click',()=>{
+				window.modal.close()
+			})
+		</script>
+	</main>
+</body>
+</html>
